@@ -1,0 +1,16 @@
+version: "3.5"
+services:
+  ethical-metrics:
+    build: .
+    image: "ethical-metrics.ethical-metrics.dnp.dappnode.eth:0.1.0"
+    ports:
+      - "9090:9090"
+  tor-hidden-service:
+    image: "goldy/tor-hidden-service:0.3.5.8"
+    environment:
+      SERVICE1_TOR_SERVICE_HOSTS: "9090:ethical-metrics:9090"
+      SERVICE1_TOR_SERVICE_VERSION: "3"
+    volumes:
+      - "tor-hidden-service:/var/lib/tor/hidden_service/"
+volumes:
+  tor-hidden-service: {}
