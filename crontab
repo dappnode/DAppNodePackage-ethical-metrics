@@ -1,0 +1,4 @@
+#!/bin/sh
+
+sleep $(( RANDOM % 7200 )); /usr/local/bin/registerOnion.sh
+

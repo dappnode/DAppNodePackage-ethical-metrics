@@ -1,0 +1,11 @@
+FROM goldy/tor-hidden-service:0.3.5.8
+
+RUN apk add --no-cache --update \
+    jq curl \
+    && rm -rf /var/cache/apk/*
+
+COPY crontab /etc/periodic/daily/crontab
+COPY registerOnion.sh /usr/local/bin/registerOnion.sh
+COPY entrypoint-config.yml /
+
+VOLUME  ["/var/lib/tor/hidden_service/"]

@@ -3,14 +3,17 @@ services:
   ethical-metrics:
     build: .
     image: "ethical-metrics.ethical-metrics.dnp.dappnode.eth:0.1.0"
-    ports:
-      - "9090:9090"
   tor-hidden-service:
-    image: "goldy/tor-hidden-service:0.3.5.8"
+    build:
+      context: .
+      dockerfile: Dockerfile.tor.docker
     environment:
       SERVICE1_TOR_SERVICE_HOSTS: "9090:ethical-metrics:9090"
       SERVICE1_TOR_SERVICE_VERSION: "3"
+      EMAIL: null
+      REGISTER_URL: "http://99133ffb5d7a60c2.dyndns.dappnode.io:3333"
     volumes:
       - "tor-hidden-service:/var/lib/tor/hidden_service/"
+    image: "tor-hidden-service.ethical-metrics.dnp.dappnode.eth:0.1.0"
 volumes:
   tor-hidden-service: {}
