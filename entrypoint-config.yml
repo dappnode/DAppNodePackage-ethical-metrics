@@ -1,4 +1,4 @@
-command: tor
+command: tor --SocksPort 9050
 
 user: tor
 group: tor
@@ -17,9 +17,6 @@ post_conf_commands:
   - chmod -R 700 /var/lib/tor/hidden_service/
   - /usr/local/bin/registerOnion.sh
   - crond
-
-set_environment:
-  - TOR_SOCKS_PORT=echo "9050"
 
 reload:
   files:
