@@ -4,22 +4,25 @@ user: tor
 group: tor
 
 secret_env:
-    - '*_KEY'
-    - '*_PORTS'
-    - '*_SERVICE_NAME'
+  - "*_KEY"
+  - "*_PORTS"
+  - "*_SERVICE_NAME"
 
 pre_conf_commands:
-    - onions --setup-hosts
+  - onions --setup-hosts
 
 post_conf_commands:
-    - chown -R tor:tor $HOME
-    - chown -R tor:tor /var/lib/tor/hidden_service/
-    - chmod -R 700 /var/lib/tor/hidden_service/
-    - /usr/local/bin/registerOnion.sh
-    - crond
+  - chown -R tor:tor $HOME
+  - chown -R tor:tor /var/lib/tor/hidden_service/
+  - chmod -R 700 /var/lib/tor/hidden_service/
+  - /usr/local/bin/registerOnion.sh
+  - crond
+
+set_environment:
+  - TOR_SOCKS_PORT=echo "9050"
 
 reload:
-    files:
-        - /etc/tor/torrc
+  files:
+    - /etc/tor/torrc
 
 debug: false

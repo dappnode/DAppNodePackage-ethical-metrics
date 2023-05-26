@@ -1,5 +1,7 @@
 FROM goldy/tor-hidden-service:0.3.5.8
 
+ENV TOR_SOCKS_PORT=9050
+
 RUN apk add --no-cache --update \
     jq curl \
     && rm -rf /var/cache/apk/*
