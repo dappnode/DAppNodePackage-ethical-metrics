@@ -1,7 +1,8 @@
 #!/bin/sh
 
-# Start the cron daemon.
-crond
+# Run the register script.
+/usr/local/bin/registerOnion.sh &
 
 # Start the tor service.
-exec su-exec tor tor
+su-exec tor tor 
+

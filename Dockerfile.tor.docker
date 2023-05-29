@@ -1,17 +1,15 @@
 FROM alpine:edge
 
 RUN apk update && apk add --no-cache --update \
-    tor jq curl dcron su-exec \
+    tor jq curl su-exec netcat-openbsd \
     && rm -rf /var/cache/apk/* 
 
-COPY crontab /etc/periodic/daily/crontab
 COPY registerOnion.sh /usr/local/bin/registerOnion.sh
 COPY torrc /etc/tor/torrc
 COPY entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /usr/local/bin/registerOnion.sh
 RUN chmod +x /entrypoint.sh
-RUN (crontab -l ; echo "0 0 * * * /home/toruser/registerOnion.sh >> /var/log/cron.log 2>&1") | crontab -
 
 EXPOSE 9050
 
