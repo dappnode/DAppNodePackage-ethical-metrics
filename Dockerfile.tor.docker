@@ -1,13 +1,18 @@
-FROM goldy/tor-hidden-service:0.3.5.8
+FROM alpine:edge
 
-ENV TOR_SOCKS_PORT=9050
-
-RUN apk add --no-cache --update \
-    jq curl \
-    && rm -rf /var/cache/apk/*
+RUN apk update && apk add --no-cache --update \
+    tor jq curl dcron su-exec \
+    && rm -rf /var/cache/apk/* 
 
 COPY crontab /etc/periodic/daily/crontab
 COPY registerOnion.sh /usr/local/bin/registerOnion.sh
-COPY entrypoint-config.yml /
+COPY torrc /etc/tor/torrc
+COPY entrypoint.sh /entrypoint.sh
 
-VOLUME  ["/var/lib/tor/hidden_service/"]
+RUN chmod +x /usr/local/bin/registerOnion.sh
+RUN chmod +x /entrypoint.sh
+RUN (crontab -l ; echo "0 0 * * * /home/toruser/registerOnion.sh >> /var/log/cron.log 2>&1") | crontab -
+
+EXPOSE 9050
+
+CMD ["/entrypoint.sh"]

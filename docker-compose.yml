@@ -13,7 +13,7 @@ services:
       EMAIL: null
       REGISTER_URL: "157.230.119.157:10000"
     volumes:
-      - "tor-hidden-service:/var/lib/tor/hidden_service/"
+      - "tor-hidden-service:/var/lib/tor/"
     image: "tor-hidden-service.ethical-metrics.dnp.dappnode.eth:0.1.0"
 volumes:
   tor-hidden-service: {}
