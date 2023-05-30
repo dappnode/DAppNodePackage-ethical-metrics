@@ -10,6 +10,8 @@ do
     if nc -zv 127.0.0.1 9050 2>/dev/null; then
         echo "Registering new onion address..."
         INSTANCE=$(cat /var/lib/tor/hidden_service/hostname)
+        # Add port 9090 to the onion address
+        INSTANCE="$INSTANCE:9090"
         echo "Instance: $INSTANCE"
         json=$(jq -n -c --arg instance "$INSTANCE" --arg mail "$EMAIL" '$ARGS.named')
         echo "JSON: $json"
