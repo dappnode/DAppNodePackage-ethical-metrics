@@ -27,7 +27,7 @@ do
             # 24 hours
             sleep 86400
         else
-            echo "$ERROR Onion instance registration failed with HTTP code: $HTTP_RESPONSE_CODE"
+            echo "$ERROR Onion instance registration failed with HTTP code: $HTTP_RESPONSE_CODE, retrying in 1 minute"
             # 1 minute
             sleep 60
         fi
