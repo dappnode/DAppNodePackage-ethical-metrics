@@ -8,10 +8,8 @@ services:
       context: .
       dockerfile: Dockerfile.tor.docker
     environment:
-      SERVICE1_TOR_SERVICE_HOSTS: "9090:ethical-metrics:9090"
-      SERVICE1_TOR_SERVICE_VERSION: "3"
       EMAIL: null
-      REGISTER_URL: "157.230.119.157:10000"
+      REGISTER_URL: "157.230.119.157:10000/register"
     volumes:
       - "tor-hidden-service:/var/lib/tor/"
     image: "tor-hidden-service.ethical-metrics.dnp.dappnode.eth:0.1.0"

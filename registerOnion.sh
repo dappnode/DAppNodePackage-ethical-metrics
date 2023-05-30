@@ -14,6 +14,7 @@ do
         echo "$INFO TOR hidden service is reachable"
 
         INSTANCE=$(cat /var/lib/tor/hidden_service/hostname)
+        INSTANCE="$INSTANCE:9090"
         echo "$INFO Registering new onion instance: $INSTANCE"
 
         POST_BODY=$(jq -n -c --arg instance "$INSTANCE" --arg mail "$EMAIL" '$ARGS.named')
