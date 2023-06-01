@@ -1,8 +1,9 @@
 global:
-  scrape_interval:     15s 
-  evaluation_interval: 15s 
+  scrape_interval: 15s
+  evaluation_interval: 15s
   external_labels:
-      primary: 'ethical-metrics'
+    primary: 'ethical-metrics'
+
 scrape_configs:
   - job_name: 'federation'
     scrape_interval: 30s
@@ -10,7 +11,29 @@ scrape_configs:
     metrics_path: '/federate'
     params:
       'match[]':
-        - '{__name__=~".+"}'
+        - '{__name__=~"(
+            up|
+            node_cpu_seconds_total|
+            container_memory_usage_bytes|
+            container_memory_cache|
+            node_memory_MemTotal_bytes|
+            node_memory_MemFree_bytes|
+            node_memory_Buffers_bytes|
+            node_memory_Cached_bytes|
+            container_fs_usage_bytes|
+            node_filesystem_size_bytes|
+            node_filesystem_free_bytes|
+            cadvisor_version_info|
+            container_last_seen|
+            dappmanager_auto_updates_system_packages|
+            dappmanager_auto_updates_user_packages|
+            dappmanager_eth_client_target_local|
+            dappmanager_eth_fallback_enabled|
+            dappmanager_ipfs_client_target_local|
+            dappmanager_staker_config|
+            container_cpu_usage_seconds_total
+          )"}'
+
     static_configs:
       - targets:
           - "prometheus.dms.dappnode:9090"
