@@ -9,31 +9,12 @@ scrape_configs:
     scrape_interval: 30s
     honor_labels: true
     metrics_path: '/federate'
+
     params:
       'match[]':
-        - '{__name__=~"(
-            up|
-            node_cpu_seconds_total|
-            container_memory_usage_bytes|
-            container_memory_cache|
-            node_memory_MemTotal_bytes|
-            node_memory_MemFree_bytes|
-            node_memory_Buffers_bytes|
-            node_memory_Cached_bytes|
-            container_fs_usage_bytes|
-            node_filesystem_size_bytes|
-            node_filesystem_free_bytes|
-            cadvisor_version_info|
-            container_last_seen|
-            dappmanager_auto_updates_system_packages|
-            dappmanager_auto_updates_user_packages|
-            dappmanager_eth_client_target_local|
-            dappmanager_eth_fallback_enabled|
-            dappmanager_ipfs_client_target_local|
-            dappmanager_staker_config|
-            container_cpu_usage_seconds_total
-          )"}'
-
+        - '{__name__=~"dappmanager.*"}'
+        - '{__name__=~"node_cpu_seconds_total|container_memory_usage_bytes|container_memory_cache|node_memory_MemTotal_bytes|node_memory_MemFree_bytes|node_memory_Buffers_bytes|node_memory_Cached_bytes|container_fs_usage_bytes|node_filesystem_size_bytes|node_filesystem_free_bytes|container_last_seen|cadvisor_version_info|container_cpu_usage_seconds_total"}'
+  
     static_configs:
       - targets:
           - "prometheus.dms.dappnode:9090"
