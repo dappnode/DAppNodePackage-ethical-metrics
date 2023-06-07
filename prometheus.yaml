@@ -13,7 +13,7 @@ scrape_configs:
     params:
       'match[]':
         - '{__name__=~"dappmanager.*"}'
-        - '{__name__=~"node_cpu_seconds_total|container_memory_usage_bytes|container_memory_cache|node_memory_MemTotal_bytes|node_memory_MemFree_bytes|node_memory_Buffers_bytes|node_memory_Cached_bytes|container_fs_usage_bytes|node_filesystem_size_bytes|node_filesystem_free_bytes|container_last_seen|cadvisor_version_info|container_cpu_usage_seconds_total"}'
+        - '{__name__=~"node_cpu_seconds_total|container_memory_usage_bytes|container_memory_cache|node_memory_MemTotal_bytes|node_memory_MemFree_bytes|node_memory_Buffers_bytes|node_memory_Cached_bytes|node_disk_io_time_seconds_total|node_disk_reads_completed_total|node_disk_writes_completed_total|container_fs_usage_bytes|node_filesystem_size_bytes|node_filesystem_free_bytes|container_last_seen|cadvisor_version_info|container_cpu_usage_seconds_total"}'
   
     static_configs:
       - targets:
