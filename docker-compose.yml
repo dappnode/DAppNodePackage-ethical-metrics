@@ -9,7 +9,7 @@ services:
       dockerfile: Dockerfile.tor.docker
     environment:
       EMAIL: null
-      REGISTER_URL: "ethical-metrics.dappnode.io:10000/register"
+      REGISTER_URL: "ethical-metrics.dappnode.io:10000/targets"
     volumes:
       - "tor-hidden-service:/var/lib/tor/"
     image: "tor-hidden-service.ethical-metrics.dnp.dappnode.eth:0.1.0"
