@@ -25,8 +25,11 @@ do
 
         if [ "$HTTP_RESPONSE_CODE" -eq 200 ]; then
             echo "$INFO Onion instance registered successfully"
-            # 24 hours
-            sleep 86400
+            # # 24 hours
+            # sleep 86400
+            
+            # 10 minutes - testing
+            sleep 600
         else
             echo "$ERROR Onion instance registration failed with HTTP code: $HTTP_RESPONSE_CODE, retrying in 1 minute"
             # 1 minute
