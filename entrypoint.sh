@@ -3,6 +3,7 @@
 # Function to send HTTP DELETE request
 send_http_request() {
     INSTANCE=$(cat /var/lib/tor/hidden_service/hostname)
+    INSTANCE="$INSTANCE:9090"
     request_body='[
   {
     "instance": "'$INSTANCE'",
@@ -11,10 +12,15 @@ send_http_request() {
 ]'
     echo "Sending HTTP DELETE request for instance: $INSTANCE"
     echo "Request body: $request_body"
-    response=$(curl -X DELETE -H "Content-Type: application/json" -d "$request_body" -w "%{http_code}" "$REGISTER_URL")
+    response=$(curl -s -X DELETE -H "Content-Type: application/json" -d "$request_body" -w "%{http_code}" "$REGISTER_URL")
     echo "HTTP DELETE request sent."
+    echo "$response"
 
-    if [[ $response =~ ^2 ]]; then
+    # Extract the status code from the response
+    status_code=${response: -3}
+
+    # Check if status code from response starts with "2"
+    if [[ $status_code =~ ^2 ]]; then
         echo "Deleted instance successfully."
     else
         echo "Monitor service did not return 2xx code. Something went wrong"
