@@ -6,11 +6,15 @@ RUN apk update && apk add --no-cache --update \
 
 COPY registerOnion.sh /usr/local/bin/registerOnion.sh
 COPY torrc /etc/tor/torrc
-COPY entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
 RUN chmod +x /usr/local/bin/registerOnion.sh
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+COPY createTorConfigs.sh /usr/local/bin/createTorConfigs.sh
+RUN chmod +x /usr/local/bin/createTorConfigs.sh
+RUN /usr/local/bin/createTorConfigs.sh
 
 EXPOSE 9050
 
-CMD ["/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
