@@ -21,7 +21,7 @@ do
         echo "$DEBUG HTTP POST body: $POST_BODY"
 
         # Perform the HTTP POST request, printing the response body and retrieving the HTTP status code
-        HTTP_RESPONSE_CODE=$(curl --socks5-hostname localhost:9050 -d "$POST_BODY" -X POST "${REGISTER_URL}" -w "%{http_code}" -o /dev/null)
+        HTTP_RESPONSE_CODE=$(curl --socks5-hostname localhost:9050 -d "$POST_BODY" -H "Content-Type: application/json" -H "Content-Length: ${#POST_BODY}" -X POST "${REGISTER_URL}" -w "%{http_code}" -o /dev/null)
 
         if [ "$HTTP_RESPONSE_CODE" -eq 200 ]; then
             echo "$INFO Onion instance registered successfully"
