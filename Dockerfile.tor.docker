@@ -11,6 +11,10 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /usr/local/bin/registerOnion.sh
 RUN chmod +x /entrypoint.sh
 
+COPY createTorConfigs.sh /usr/local/bin/createTorConfigs.sh
+RUN chmod +x /usr/local/bin/createTorConfigs.sh
+RUN /usr/local/bin/createTorConfigs.sh
+
 EXPOSE 9050
 
 CMD ["/entrypoint.sh"]
