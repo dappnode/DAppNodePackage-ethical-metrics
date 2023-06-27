@@ -14,7 +14,7 @@ fields:
   - id: instances
     target:
       type: environment
-      name: NUMBER_OF_INSTANCES
+      name: NUMBER_OF_TOR_INSTANCES
       service: tor-hidden-service
     title: number of tor instances
     description: >-
