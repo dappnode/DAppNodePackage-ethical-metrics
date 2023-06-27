@@ -7,7 +7,7 @@ for i in $(seq 1 $NUMBER_OF_TOR_INSTANCES); do
   /usr/local/bin/registerOnion.sh $((9050 + i)) &
 
   # Start the tor service
-  su-exec tor tor -f "/etc/tor/torrc.$i" &
+  tor -f "/etc/tor/torrc.$i" &
 
   sleep 1
 done
