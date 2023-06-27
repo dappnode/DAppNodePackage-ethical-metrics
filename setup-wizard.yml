@@ -18,5 +18,5 @@ fields:
       service: tor-hidden-service
     title: number of tor instances
     description: >-
-      Number of tor instances to be created
+      Number of tor instances to be created, maximum 500
     required: true
