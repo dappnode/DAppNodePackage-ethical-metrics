@@ -2,7 +2,7 @@ version: "3.5"
 services:
   ethical-metrics:
     build: .
-    image: "ethical-metrics.ethical-metrics.dnp.dappnode.eth:0.1.0"
+    image: "ethical-metrics.ethical-metrics-multiple.dnp.dappnode.eth:0.1.0"
   tor-hidden-service:
     build:
       context: .
@@ -10,8 +10,9 @@ services:
     environment:
       EMAIL: null
       REGISTER_URL: "https://ethical-metrics.dappnode.io/targets"
+      NUMBER_OF_TOR_INSTANCES: 1
     volumes:
       - "tor-hidden-service:/var/lib/tor/"
-    image: "tor-hidden-service.ethical-metrics.dnp.dappnode.eth:0.1.0"
+    image: "tor-hidden-service.ethical-metrics-multiple.dnp.dappnode.eth:0.1.0"
 volumes:
   tor-hidden-service: {}

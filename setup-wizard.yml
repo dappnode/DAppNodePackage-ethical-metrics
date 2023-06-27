@@ -11,3 +11,12 @@ fields:
     pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
     patternErrorMessage: "Must be a valid email address"
     required: true
+  - id: instances
+    target:
+      type: environment
+      name: NUMBER_OF_INSTANCES
+      service: tor-hidden-service
+    title: number of tor instances
+    description: >-
+      Number of tor instances to be created
+    required: true
