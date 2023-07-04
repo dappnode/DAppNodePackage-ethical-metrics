@@ -12,7 +12,7 @@ send_http_request() {
 ]'
     echo "Sending HTTP DELETE request for instance: $INSTANCE"
     echo "Request body: $request_body"
-    response=$(curl -s -X DELETE -H "Content-Type: application/json" -H "Content-Length: ${#request_body}" -d "$request_body" -w "%{http_code}" "$REGISTER_URL")
+    response=$(curl -s -X DELETE -H "Content-Type: application/json" -H "Content-Length: ${#request_body}" -d "$request_body" -w "%{http_code}" "${REGISTER_URL}?inactiveDelay=true")
     echo "HTTP DELETE request sent."
     echo "$response"
 
