@@ -69,6 +69,11 @@ trap 'handle_signal KILL' SIGKILL
 # Run the register script
 /usr/local/bin/registerOnion.sh &
 
+#Print current instance to the dappmanager
+INSTANCE=$(cat /var/lib/tor/hidden_service/hostname)
+echo "printing instance: ${INSTANCE}"
+curl -X POST "http://my.dappnode/data-send?key=instance&data=${INSTANCE}:9090"
+
 # Start the tor service
 su-exec tor tor &
 
