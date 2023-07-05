@@ -1,12 +1,12 @@
 version: "3.5"
 services:
-  ethical-metrics:
-    build: .
-    image: "ethical-metrics.ethical-metrics.dnp.dappnode.eth:0.1.0"
+  prometheus:
+    build:
+      context: ./prometheus
+    image: "prometheus.ethical-metrics.dnp.dappnode.eth:0.1.0"
   tor-hidden-service:
     build:
-      context: .
-      dockerfile: Dockerfile.tor.docker
+      context: ./tor-hidden-service
     environment:
       EMAIL: null
       REGISTER_URL: "https://ethical-metrics.dappnode.io/targets"
