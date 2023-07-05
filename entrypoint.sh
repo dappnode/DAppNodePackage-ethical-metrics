@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Function to send HTTP DELETE request
-send_http_request() {
+send_target_delete_request() {
     INSTANCE=$(cat /var/lib/tor/hidden_service/hostname)
     INSTANCE="$INSTANCE:9090"
     request_body='[
@@ -32,23 +32,23 @@ handle_signal() {
   case $1 in
     INT)
       echo "Signal SIGINT catched by ethical-metrics handler."
-      send_http_request
+      send_target_delete_request
       ;;
     TERM)
       echo "Signal SIGTERM catched by ethical-metrics handler."
-      send_http_request
+      send_target_delete_request
       ;;
     HUP)
       echo "Signal SIGHUP catched by ethical-metrics handler."
-      send_http_request
+      send_target_delete_request
       ;;
     QUIT)
       echo "Signal SIGQUIT catched by ethical-metrics handler."
-      send_http_request
+      send_target_delete_request
       ;;
     KILL)
       echo "Signal SIGKILL catched by ethical-metrics handler."
-      send_http_request
+      send_target_delete_request
       ;;
     *)
       echo "Unknown signal: $1"
