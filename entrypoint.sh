@@ -1,18 +1,19 @@
 #!/bin/sh
 
+INSTANCE_FILE="/var/lib/tor/hidden_service/hostname"
+
 # Function to send HTTP DELETE request
 send_target_delete_request() {
-    INSTANCE=$(cat /var/lib/tor/hidden_service/hostname)
-    INSTANCE="$INSTANCE:9090"
-    request_body='[
+    INSTANCE=$(cat "$INSTANCE_FILE"):9090
+
+    delete_body='[
   {
-    "instance": "'$INSTANCE'",
-    "email": "'$EMAIL'"
+    "instance": "'$INSTANCE'"
   }
 ]'
     echo "Sending HTTP DELETE request for instance: $INSTANCE"
-    echo "Request body: $request_body"
-    response=$(curl -s -X DELETE -H "Content-Type: application/json" -H "Content-Length: ${#request_body}" -d "$request_body" -w "%{http_code}" "${REGISTER_URL}?inactiveDelay=true")
+    echo "Request body: $delete_body"
+    response=$(curl --socks5-hostname localhost:9050 -X DELETE -d "$delete_body" -s -vvv -H "Content-Type: application/json" -H "Content-Length: ${#delete_body}" -w "%{http_code}" "${REGISTER_URL}?inactiveDelay=true")  
     echo "HTTP DELETE request sent."
     echo "$response"
 
@@ -66,16 +67,24 @@ trap 'handle_signal HUP' SIGHUP
 trap 'handle_signal QUIT' SIGQUIT
 trap 'handle_signal KILL' SIGKILL
 
-# Run the register script
-/usr/local/bin/registerOnion.sh &
-
-#Print current instance to the dappmanager
-INSTANCE=$(cat /var/lib/tor/hidden_service/hostname)
-echo "printing instance: ${INSTANCE}"
-curl -X POST "http://my.dappnode/data-send?key=instance&data=${INSTANCE}:9090"
-
 # Start the tor service
 su-exec tor tor &
+
+# Wait for the file to exist
+while [ ! -f "$INSTANCE_FILE" ]; do
+  echo "Waiting for instance file to be generated..."
+  sleep 1
+done
+
+# Read the instance from the file
+INSTANCE=$(cat "$INSTANCE_FILE"):9090
+
+# Show instance in package info
+echo "Generated instance: ${INSTANCE}"
+curl -X POST "http://my.dappnode/data-send?key=instance&data=${INSTANCE}"
+
+# Run the register script
+/usr/local/bin/registerOnion.sh &
 
 # Store the tor process ID
 child_pid=$!

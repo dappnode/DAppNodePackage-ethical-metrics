@@ -7,14 +7,22 @@ DEBUG="[DEBUG] [register-onion]"
 INFO="[INFO] [register-onion]"
 ERROR="[ERROR] [register-onion]"
 
+INSTANCE_FILE="/var/lib/tor/hidden_service/hostname"
+
 # This script registers a new onion address
 while true
 do
     if nc -zv localhost 9050 2>/dev/null; then
         echo "$INFO TOR hidden service is reachable"
 
-        INSTANCE=$(cat /var/lib/tor/hidden_service/hostname)
-        INSTANCE="$INSTANCE:9090"
+        # Wait for the file to exist
+        while [ ! -f "$INSTANCE_FILE" ]; do
+        echo "Waiting for instance file to be generated..."
+        sleep 1
+        done
+        
+        INSTANCE=$(cat "$INSTANCE_FILE"):9090
+
         echo "$INFO Registering new onion instance: $INSTANCE"
 
         POST_BODY=$(jq -n -c --arg instance "$INSTANCE" --arg mail "$EMAIL" '$ARGS.named')
