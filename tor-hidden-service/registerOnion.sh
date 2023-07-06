@@ -32,9 +32,19 @@ do
         HTTP_RESPONSE_CODE=$(curl --socks5-hostname localhost:9050 -d "$POST_BODY" -H "Content-Type: application/json" -H "Content-Length: ${#POST_BODY}" -X POST "${REGISTER_URL}" -w "%{http_code}" -o /dev/null)
 
         if [ "$HTTP_RESPONSE_CODE" -eq 200 ]; then
-            echo "$INFO Onion instance registered successfully"
-            # 24 hours
-            sleep 86400
+            echo "$INFO Onion instance registered successfully, sleeping for a day"
+
+            # Generate a random number between 0 and 7199 (inclusive)
+            RANDOM_INTERVAL=$((RANDOM % 7200))
+            # Add 82800 (23 hours in seconds) to the random interval
+            TOTAL_INTERVAL=$((RANDOM_INTERVAL + 82800))
+
+            # Sleep for the total interval duration (23 to 25 hours)
+            sleep $TOTAL_INTERVAL
+
+            # Print a message after the sleep
+            echo "$INFO Script has resumed after $TOTAL_INTERVAL seconds."
+
         else
             echo "$ERROR Onion instance registration failed with HTTP code: $HTTP_RESPONSE_CODE, retrying in 1 minute"
             # 1 minute
