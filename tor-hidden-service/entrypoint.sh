@@ -13,7 +13,7 @@ send_target_delete_request() {
 ]'
     echo "Sending HTTP DELETE request for instance: $INSTANCE"
     echo "Request body: $delete_body"
-    response=$(curl --socks5-hostname localhost:9050 -X DELETE -d "$delete_body" -s -vvv -H "Content-Type: application/json" -H "Content-Length: ${#delete_body}" -w "%{http_code}" "${REGISTER_URL}?inactiveDelay=true")  
+    response=$(curl --socks5-hostname localhost:9050 -X DELETE -d "$delete_body" -s -H "Content-Type: application/json" -H "Content-Length: ${#delete_body}" -w "%{http_code}" "${REGISTER_URL}?inactiveDelay=true")  
     echo "HTTP DELETE request sent."
     echo "$response"
 
