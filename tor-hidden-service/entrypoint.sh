@@ -31,7 +31,7 @@ send_target_delete_request() {
 # Function to handle signals
 handle_signal() {
     local signal=$1
-    local signals=("INT" "TERM" "HUP" "QUIT" "KILL")
+    local signals=("INT" "TERM" "HUP" "QUIT")
 
     if [[ " ${signals[@]} " =~ " $signal " ]]; then
         echo "Signal SIG$signal caught by ethical-metrics handler."
