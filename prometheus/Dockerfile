@@ -1,4 +1,6 @@
-FROM prom/prometheus:v2.45.0
+ARG UPSTREAM_VERSION
+
+FROM prom/prometheus:${UPSTREAM_VERSION}
 
 COPY prometheus.yaml /etc/prometheus/prometheus.yaml
 
