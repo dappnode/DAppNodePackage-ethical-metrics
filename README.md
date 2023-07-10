@@ -1,6 +1,6 @@
 # ETHICAL METRICS
 
-This repository contains the Ethical Metrics package, which is responsible for registering the user in the monitor-proxy and exposing some of it's dappnode metrics to a monitor-service instance. It achieves this through the setup of two dappnode services: _tor-hidden-service_ and _ethical-metrics_.
+This repository contains the Ethical Metrics package, which is responsible for registering the user in the monitor-proxy and exposing some of it's dappnode metrics to a monitor-service instance. It achieves this through the setup of two dappnode services: _tor-hidden-service_ and _prometheus_.
 
 ## tor-hidden-service
 
