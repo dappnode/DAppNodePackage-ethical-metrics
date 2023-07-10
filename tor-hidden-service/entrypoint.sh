@@ -32,23 +32,23 @@ send_target_delete_request() {
 handle_signal() {
   case $1 in
     INT)
-      echo "Signal SIGINT catched by ethical-metrics handler."
+      echo "Signal SIGINT caught by ethical-metrics handler."
       send_target_delete_request
       ;;
     TERM)
-      echo "Signal SIGTERM catched by ethical-metrics handler."
+      echo "Signal SIGTERM caught by ethical-metrics handler."
       send_target_delete_request
       ;;
     HUP)
-      echo "Signal SIGHUP catched by ethical-metrics handler."
+      echo "Signal SIGHUP caught by ethical-metrics handler."
       send_target_delete_request
       ;;
     QUIT)
-      echo "Signal SIGQUIT catched by ethical-metrics handler."
+      echo "Signal SIGQUIT caught by ethical-metrics handler."
       send_target_delete_request
       ;;
     KILL)
-      echo "Signal SIGKILL catched by ethical-metrics handler."
+      echo "Signal SIGKILL caught by ethical-metrics handler."
       send_target_delete_request
       ;;
     *)

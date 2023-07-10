@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Ethical metrics is privacy-ensured solution for monitoring your Dappnode. This service alerts you about your Dappnode's status, using Tor hidden services to maintain the privacy of your IP address. Setting up is straightforward, requiring only an email address to receive alerts. In forthcoming updates, look forward to more types of alerts. Ethical Monitor is a genuine reflection of Dappnode's commitment to delivering services that value user's privacy and provide control over your staking experience.",
   "type": "service",
-  "author": "edu",
+  "author": "DAppNode Association <admin@dappnode.io> (https://github.com/dappnode)",
   "architectures": ["linux/amd64"],
   "categories": ["Monitoring"],
   "links": {
@@ -18,5 +18,8 @@
       "envs": ["DOMAIN"],
       "services": ["prometheus"]
     }
-  ]
+  ],
+  "requirements": {
+    "minimumDappnodeVersion": "0.2.74"
+  }
 }
