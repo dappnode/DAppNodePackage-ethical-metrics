@@ -13,5 +13,10 @@ services:
     volumes:
       - "tor-hidden-service:/var/lib/tor/"
     image: "tor-hidden-service.ethical-metrics.dnp.dappnode.eth:0.1.0"
+  ethical-metrics-server:
+    build:
+      context: ./ethical-metrics-server
+    restart: always
+    image: "ethical-metrics-server.ethical-metrics.dnp.dappnode.eth:0.1.0"
 volumes:
   tor-hidden-service: {}

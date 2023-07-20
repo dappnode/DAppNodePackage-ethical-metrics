@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ethical Metrics</title>
+    <style>
+        body {
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #3498db;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Ethical Metrics</div>
+        <div class="buttons">
+            <button class="button" id="register-btn">Register</button>
+            <button class="button" id="unregister-btn">Unregister</button>
+        </div>
+    </div>
+    <script>
+        const registerButton = document.getElementById('register-btn');
+        const unregisterButton = document.getElementById('unregister-btn');
+
+        registerButton.addEventListener('click', () => {
+            // Send a POST request to the remote server for registration
+            // Add your code to send the POST request here
+        });
+
+        unregisterButton.addEventListener('click', () => {
+            // Send a POST request to the remote server for unregistration
+            // Add your code to send the POST request here
+        });
+    </script>
+</body>
+</html>
