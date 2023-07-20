@@ -18,5 +18,9 @@ services:
       context: ./ethical-metrics-server
     restart: always
     image: "ethical-metrics-server.ethical-metrics.dnp.dappnode.eth:0.1.0"
+    depends_on:
+      - tor-hidden-service
+    volumes:
+      - "tor-hidden-service:/var/lib/tor:ro"
 volumes:
   tor-hidden-service: {}

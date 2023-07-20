@@ -12,14 +12,29 @@
             margin: 0;
         }
 
-        .container {
-            text-align: center;
+        .navbar {
+            background-color: #3498db;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .logo {
+            width: 40px; /* Set your desired width for the logo */
+            height: 40px; /* Set your desired height for the logo */
+            margin-right: 10px;
         }
 
         .title {
             font-size: 24px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 20px;
         }
 
         .buttons {
@@ -40,7 +55,28 @@
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <img src="dappnode.png" alt="Logo" class="logo">
+        <div class="title">Ethical Metrics</div>
+    </div>
     <div class="container">
+        <!-- Display the contents of /var/lib/tor/hidden_service/hostname here -->
+        <div class="hostname">
+            <!-- JavaScript code to fetch and display the hostname -->
+            <script>
+                fetch('/var/lib/tor/hidden_service/hostname')
+                .then(response => response.text())
+                .then(data => {
+                    const hostnameElement = document.createElement('div');
+                    hostnameElement.textContent = `Hostname: ${data}`;
+                    document.body.appendChild(hostnameElement);
+                })
+                .catch(error => {
+                    console.error('Error fetching hostname:', error);
+                });
+            </script>
+        </div>
+
         <div class="title">Ethical Metrics</div>
         <div class="buttons">
             <button class="button" id="register-btn">Register</button>
