@@ -28,45 +28,6 @@ send_target_delete_request() {
     fi
 }
 
-# Function to handle signals
-handle_signal() {
-  case $1 in
-    INT)
-      echo "Signal SIGINT caught by ethical-metrics handler."
-      send_target_delete_request
-      ;;
-    TERM)
-      echo "Signal SIGTERM caught by ethical-metrics handler."
-      send_target_delete_request
-      ;;
-    HUP)
-      echo "Signal SIGHUP caught by ethical-metrics handler."
-      send_target_delete_request
-      ;;
-    QUIT)
-      echo "Signal SIGQUIT caught by ethical-metrics handler."
-      send_target_delete_request
-      ;;
-    KILL)
-      echo "Signal SIGKILL caught by ethical-metrics handler."
-      send_target_delete_request
-      ;;
-    *)
-      echo "Unknown signal: $1"
-      ;;
-  esac
-  # Propagate the signal to the child process
-  kill -"$1" "$child_pid"
-  exit 0
-}
-
-# Trap signals and call handle_signal function
-trap 'handle_signal INT' SIGINT
-trap 'handle_signal TERM' SIGTERM
-trap 'handle_signal HUP' SIGHUP
-trap 'handle_signal QUIT' SIGQUIT
-trap 'handle_signal KILL' SIGKILL
-
 # Start the tor service
 su-exec tor tor &
 
