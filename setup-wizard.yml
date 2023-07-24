@@ -4,7 +4,7 @@ fields:
     target:
       type: environment
       name: EMAIL
-      service: tor-hidden-service
+      service: [tor-hidden-service, ethical-metrics-server]
     title: Email for notifications
     description: >-
       This email is used to send you alerts about the status of your machine, it is advisable to create a new email only for these notifications if you want to fully preserve your privacy

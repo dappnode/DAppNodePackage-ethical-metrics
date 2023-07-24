@@ -125,28 +125,30 @@
         const registerApiUrl = '/api/register'; // Replace with the actual URL for the register API
         const unregisterApiUrl = '/api/unregister'; // Replace with the actual URL for the unregister API
 
-        registerButton.addEventListener('click', () => {
-            fetch(registerApiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    // Handle the response data for the register API call if needed
-                    console.log('Register API response:', data);
-                })
-                .catch(error => {
-                    console.error('Error in register API call:', error);
+        registerButton.addEventListener('click', async () => {
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
                 });
+    
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Error in register API call:', error);
+            }
         });
-
-        unregisterButton.addEventListener('click', () => {
-            fetch(unregisterApiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    // Handle the response data for the unregister API call if needed
-                    console.log('Unregister API response:', data);
-                })
-                .catch(error => {
-                    console.error('Error in unregister API call:', error);
+    
+        unregisterButton.addEventListener('click', async () => {
+            try {
+                const response = await fetch('/api/unregister', {
+                    method: 'POST',
                 });
+    
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Error in unregister API call:', error);
+            }
         });
     </script>
 </body>
