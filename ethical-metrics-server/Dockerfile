@@ -1,13 +1,23 @@
-# Use the nginx base image
-FROM nginx:1.25
-# Copy nginx configuration file
-COPY ./nginx-conf/default.conf /etc/nginx/conf.d/default.conf
+# Dockerfile
+FROM node:alpine3.18
+# Set the working directory
+WORKDIR /usr/src/app
 
-# Copy frontend files
-COPY ./frontend /usr/share/nginx/html
+# Copy package.json and package-lock.json to install dependencies
+COPY backend/package*.json backend/
 
-# Expose port 80
-EXPOSE 80
+# Install backend dependencies
+RUN cd backend && npm install
 
-# Run nginx when the container starts
-CMD ["nginx", "-g", "daemon off;"]
+# Copy the backend code
+COPY backend/ backend/
+
+# Copy the frontend files
+COPY index.html .
+COPY dappnode.png .
+
+# Expose the port on which the Node.js server is running
+EXPOSE 3000
+
+# Start the Node.js server
+CMD ["node", "backend/api.js"]
