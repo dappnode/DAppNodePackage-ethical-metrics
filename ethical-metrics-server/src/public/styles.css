@@ -1,0 +1,73 @@
+body {
+    background-color: #f0f4f8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.navbar {
+    background-color: #3498db;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    position: fixed; /* Change to fixed */
+    top: 0; /* Position at the top */
+    width: 100%; /* Set width to 100% to occupy the full width */
+}
+
+.logo {
+    width: 40px; /* Set your desired width for the logo */
+    height: 40px; /* Set your desired height for the logo */
+    margin-right: 10px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    margin-top: 80px; /* Add top margin to avoid overlapping with the navbar */
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.toggle-button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #1137b3;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Style for displaying file content */
+.file-content {
+    margin-top: 20px;
+    white-space: pre-wrap; /* Preserve line breaks and spaces */
+    font-family: 'Courier New', monospace;
+    border: 1px solid #3498db;
+    padding: 10px;
+}

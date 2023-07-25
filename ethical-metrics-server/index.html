@@ -1,76 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ethical Metrics2</title>
-    <style>
-        body {
-            background-color: #f0f4f8;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .navbar {
-            background-color: #3498db;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            position: fixed; /* Change to fixed */
-            top: 0; /* Position at the top */
-            width: 100%; /* Set width to 100% to occupy the full width */
-        }
-
-        .logo {
-            width: 40px; /* Set your desired width for the logo */
-            height: 40px; /* Set your desired height for the logo */
-            margin-right: 10px;
-        }
-
-        .title {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .container {
-            text-align: center;
-            margin-top: 80px; /* Add top margin to avoid overlapping with the navbar */
-        }
-
-        .buttons-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .button {
-            padding: 10px 20px;
-            margin: 5px;
-            background-color: #3498db;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /* Style for displaying file content */
-        .file-content {
-            margin-top: 20px;
-            white-space: pre-wrap; /* Preserve line breaks and spaces */
-            font-family: 'Courier New', monospace;
-            border: 1px solid #3498db;
-            padding: 10px;
-        }
-    </style>
+    <title>Ethical Metrics</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="navbar">
-        <img src="/usr/src/app/dappnode.png" alt="Logo" class="logo">
+        <img src="dappnode.png" alt="Logo" class="logo">
         <div class="title">Ethical Metrics</div>
     </div>
 
@@ -78,78 +15,17 @@
     <div class="file-content" id="file-content-display" style="display: none;"></div>
     <!-- Your frontend content -->
     <div class="container">
-        <button id="toggle-file-btn" class="button">Show Tor Instance</button>
+        <button id="toggle-file-btn" class="toggle-button">Show Tor Instance</button>
     </div>
 
     <div class="buttons-container">
-        <button id="register-btn" class="button">Register</button>
-        <button id="unregister-btn" class="button">Unregister</button>
+        <button id="register-btn" class="button" data-api-url="/api/register">Register</button>
+        <button id="unregister-btn" class="button" data-api-url="/api/unregister">Unregister</button>
     </div>
 
-    <script>
-        const toggleFileButton = document.getElementById('toggle-file-btn');
-        const registerButton = document.getElementById('register-btn');
-        const unregisterButton = document.getElementById('unregister-btn');
-        const fileContentDisplay = document.getElementById('file-content-display');
+    <div class="feedback" id="feedback" style="display: none;"></div>
 
-        let isFileContentVisible = false;
-
-        const getFileContent = async () => {
-            try {
-                const response = await fetch('/api/getFileContent');
-                const data = await response.json();
-                fileContentDisplay.textContent = data.content;
-                toggleFileButton.textContent = 'Hide File Content';
-                isFileContentVisible = true;
-                fileContentDisplay.style.display = 'block';
-            } catch (error) {
-                fileContentDisplay.textContent = 'Error fetching file content:\n' + error.message;
-            }
-        };
-
-        const hideFileContent = () => {
-            fileContentDisplay.style.display = 'none';
-            toggleFileButton.textContent = 'Show Tor Instance';
-            isFileContentVisible = false;
-        };
-
-        toggleFileButton.addEventListener('click', () => {
-            if (isFileContentVisible) {
-                hideFileContent();
-            } else {
-                getFileContent();
-            }
-        });
-
-        // Replace 'YOUR_REGISTER_API_URL' and 'YOUR_UNREGISTER_API_URL' with the actual URLs for the API endpoints
-        const registerApiUrl = '/api/register'; // Replace with the actual URL for the register API
-        const unregisterApiUrl = '/api/unregister'; // Replace with the actual URL for the unregister API
-
-        registerButton.addEventListener('click', async () => {
-            try {
-                const response = await fetch('/api/register', {
-                    method: 'POST',
-                });
-    
-                const data = await response.json();
-                console.log(data);
-            } catch (error) {
-                console.error('Error in register API call:', error);
-            }
-        });
-    
-        unregisterButton.addEventListener('click', async () => {
-            try {
-                const response = await fetch('/api/unregister', {
-                    method: 'POST',
-                });
-    
-                const data = await response.json();
-                console.log(data);
-            } catch (error) {
-                console.error('Error in unregister API call:', error);
-            }
-        });
-    </script>
+    <!-- External JavaScript file -->
+    <script src="app.js"></script>
 </body>
 </html>
