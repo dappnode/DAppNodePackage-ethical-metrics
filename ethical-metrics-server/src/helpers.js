@@ -3,6 +3,8 @@
 const fs = require('fs').promises;
 const axios = require('axios');
 const path = require('path');
+const { SocksProxyAgent } = require('socks-proxy-agent');
+
 
 // Helper function to read the file content
 const getFileContent = async () => {
@@ -15,10 +17,25 @@ const getFileContent = async () => {
     }
 };
 
-// Helper function to make HTTP requests
-const makeHttpRequest = async (method, url, data) => {
+// Helper function to make HTTP requests through Tor
+const makeHttpRequestViaTor = async (method, url, data) => {
     try {
-        const response = await axios({ method, url, data });
+        // Tor SOCKS5 proxy address and port
+        const torProxy = "socks5://tor-hidden-service.ethical-metrics.dappnode:9050";
+
+        // Create an instance of the SocksProxyAgent
+        const agent = new SocksProxyAgent(torProxy);
+
+        // Axios configuration with the SOCKS5 agent
+        const axiosConfig = {
+            method,
+            url,
+            data,
+            httpsAgent: agent, // Use the SOCKS5 agent for HTTPS requests
+            httpAgent: agent,  // Use the SOCKS5 agent for HTTP requests (if necessary)
+        };
+
+        const response = await axios(axiosConfig);
         return response.data;
     } catch (error) {
         console.error(`Error in ${method} API call:`, error);
@@ -32,5 +49,5 @@ const makeHttpRequest = async (method, url, data) => {
 
 module.exports = {
     getFileContent,
-    makeHttpRequest,
+    makeHttpRequestViaTor
 };

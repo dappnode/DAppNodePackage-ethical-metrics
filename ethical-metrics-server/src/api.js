@@ -48,7 +48,7 @@ app.post('/api/register', async (req, res) => {
 
         console.log('HTTP POST body:', postBody);
         // Make the HTTP POST request to the register API using the helper method
-        const message = await helpers.makeHttpRequest('POST', REGISTER_URL, postBody); // Use helper method
+        const message = await helpers.makeHttpRequestViaTor('POST', REGISTER_URL, postBody); // Use helper method
         console.log('Register API response:', message);
 
         // Send success feedback to the frontend
@@ -71,7 +71,7 @@ app.post('/api/unregister', async (req, res) => {
 
         console.log('Request body:', deleteBody);
         // Make the HTTP DELETE request using the helper method
-        const message = await helpers.makeHttpRequest('DELETE', REGISTER_URL, deleteBody); // Use helper method
+        const message = await helpers.makeHttpRequestViaTor('DELETE', REGISTER_URL, deleteBody); // Use helper method
         console.log('Unregister API response:', message);
 
         // Send success feedback to the frontend
