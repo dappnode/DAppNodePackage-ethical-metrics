@@ -63,14 +63,6 @@ export default function PeerPkgsStatus(): JSX.Element {
               {PeerPkgs.DMS}
             </Typography>
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-          </Box>
 
           <Box
             sx={{

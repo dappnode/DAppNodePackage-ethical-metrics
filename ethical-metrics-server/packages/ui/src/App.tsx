@@ -3,6 +3,7 @@ import React from 'react';
 import { ThemeMode } from './types';
 import TopBar from './components/TopBar/TopBar';
 import PeerPkgsStatus from './components/PeerPkgsStatus/PeerPkgsStatus';
+import MainCard from './components/MainCard/MainCard';
 
 function App(): JSX.Element {
 
@@ -24,7 +25,7 @@ function App(): JSX.Element {
 
       <PeerPkgsStatus />
 
-      {/* Insert card here */}
+      <MainCard/>
 
     </ThemeProvider>
   );

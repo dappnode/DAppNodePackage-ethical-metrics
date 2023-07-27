@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import fs from 'fs/promises';
+import cors from 'cors';
 import http from 'node:http';
 import { makeHttpRequestViaTor } from './makeHttpRequestViaTor.js';
 import { uiBuildPath } from '../../params.js';
@@ -19,6 +19,8 @@ export function startApi({
 
     const app = express();
     const server = new http.Server(app);
+    app.use(express.json());
+    app.use(cors());
 
     // Serve the frontend index.html file
     /*app.get('/', (_req, res) => {
