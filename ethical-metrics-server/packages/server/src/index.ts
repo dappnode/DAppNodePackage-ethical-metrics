@@ -1,20 +1,18 @@
 import logger from "./modules/logger/index.js";
-import { getFileContent } from "./modules/fs/getFileContent.js";
 import { startApi } from "./modules/server/index.js";
-import { torInstanceFilePath } from "./params.js";
 
 logger.info(`Starting Ethical Metrics UI...`);
 
-let torInstance: string;
+/*let torInstance: string;
 
-/*try {
+try {
   torInstance = (await getFileContent(torInstanceFilePath)).trim() + ':9090'; // Use helper method
 } catch (error) {
   logger.error(`Error reading TOR instance file ${torInstanceFilePath}`, error as Error);
   process.exit(1);
 }*/
 
-torInstance = "32qlcejruhpuzs3z5zvjuhwpptxl4bo4wvx4backrpfxuervxaremmid.onion:9090";
+const torInstance = "32qlcejruhpuzs3z5zvjuhwpptxl4bo4wvx4backrpfxuervxaremmid.onion:9090";
 
 logger.info(`Loaded TOR instance: ${torInstance}`);
 
