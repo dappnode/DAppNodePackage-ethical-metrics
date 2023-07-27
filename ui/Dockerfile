@@ -29,7 +29,7 @@ COPY --from=build /app/packages/server/node_modules ./packages/server/node_modul
 COPY --from=build /app/packages/server/dist ./packages/server/dist
 
 # Copy UI build
-COPY --from=build /app/packages/ui/build ./packages/server/uiBuild
+COPY --from=build /app/packages/ui/build ./uiBuild
 
 CMD ["node", "packages/server/dist/index.js"]
 
