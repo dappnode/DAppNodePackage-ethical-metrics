@@ -15,5 +15,17 @@ services:
     volumes:
       - "tor-hidden-service:/var/lib/tor/"
     image: "tor-hidden-service.ethical-metrics.dnp.dappnode.eth:0.1.0"
+  ui:
+    build:
+      context: ./ui
+    restart: always
+    environment:
+      EMAIL: null
+      REGISTER_URL: "https://ethical-metrics.dappnode.io/targets"
+    image: "ui.ethical-metrics.dnp.dappnode.eth:0.1.0"
+    depends_on:
+      - tor-hidden-service
+    volumes:
+      - "tor-hidden-service:/var/lib/tor:ro"
 volumes:
   tor-hidden-service: {}
