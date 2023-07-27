@@ -1,6 +1,6 @@
 import path from "path";
 import fs from "fs/promises";
-import logger from "../modules/logger";
+import logger from "../logger/index.js";
 
 // Helper function to read the file content
 export async function getFileContent(filePath: string): Promise<string> {

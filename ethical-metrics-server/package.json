@@ -1,0 +1,16 @@
+{
+    "name": "ethical-metrics-server",
+    "type": "module",
+    "private": true,
+    "workspaces": [
+      "packages/*"
+    ],
+    "version": "0.1.0",
+    "repository": "https://github.com/dappnode/DAppNodePackage-ethical-metrics.git",
+    "author": "DappNode Association",
+    "license": "MIT",
+    "scripts": {
+      "build": "npm run build --workspaces"
+    }
+  }
+  

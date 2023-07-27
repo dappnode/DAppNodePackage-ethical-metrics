@@ -2,8 +2,8 @@ import express from 'express';
 import path from 'path';
 import fs from 'fs/promises';
 import http from 'node:http';
-import { makeHttpRequestViaTor } from './makeHttpRequestViaTor';
-import { uiBuildPath } from '../../params';
+import { makeHttpRequestViaTor } from './makeHttpRequestViaTor.js';
+import { uiBuildPath } from '../../params.js';
 
 export function startApi({
     torInstance,
@@ -19,9 +19,6 @@ export function startApi({
 
     const app = express();
     const server = new http.Server(app);
-
-    // Serve static files from the "public" directory
-    app.use(express.static(uiBuildPath));
 
     // Serve the frontend index.html file
     /*app.get('/', (_req, res) => {
@@ -86,6 +83,13 @@ export function startApi({
             // Send error feedback to the frontend
             res.status(500).send((error as Error).message || 'Failed to unregister onion instance');
         }
+    });
+
+    // Serve static files from the "public" directory
+    app.use(express.static(uiBuildPath));
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.join(uiBuildPath, "index.html"));
     });
 
     // Start the server

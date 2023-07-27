@@ -1,9 +1,29 @@
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import React from 'react';
+import { ThemeMode } from './types';
+import TopBar from './components/TopBar/TopBar';
+
 function App(): JSX.Element {
 
+  const [themeMode, setThemeMode] = React.useState<ThemeMode>(ThemeMode.LIGHT);
+
   return (
-    <div>
-        <h1>App</h1>
-    </div>
+    <ThemeProvider
+      theme={createTheme({
+        palette: {
+          mode: themeMode,
+        },
+      })}
+    >
+      <CssBaseline />
+      <TopBar
+        themeMode={themeMode}
+        setThemeMode={setThemeMode}
+      />
+
+      {/* Insert card here */}
+
+    </ThemeProvider>
   );
 }
 
