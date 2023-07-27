@@ -2,6 +2,7 @@ import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import React from 'react';
 import { ThemeMode } from './types';
 import TopBar from './components/TopBar/TopBar';
+import PeerPkgsStatus from './components/PeerPkgsStatus/PeerPkgsStatus';
 
 function App(): JSX.Element {
 
@@ -20,6 +21,8 @@ function App(): JSX.Element {
         themeMode={themeMode}
         setThemeMode={setThemeMode}
       />
+
+      <PeerPkgsStatus />
 
       {/* Insert card here */}
 
