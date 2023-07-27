@@ -2,6 +2,7 @@ import { Box, Card, Alert, TextField, Button } from "@mui/material";
 import React from "react";
 import { getInstance } from "../../calls/getInstance";
 import { registerInstance } from "../../calls/registerInstance";
+import { unregisterInstance } from "../../calls/unregisterInstance";
 
 export default function MainCard(): JSX.Element {
   const [instance, setInstance] = React.useState<string>("");
@@ -33,7 +34,7 @@ export default function MainCard(): JSX.Element {
 
   async function triggerUnregister(): Promise<void> {
     try {
-      const registerResponse = await registerInstance();
+      const registerResponse = await unregisterInstance();
       setSuccessMessage(registerResponse.message);
     } catch (err) {
       setFetchError(err.message);
