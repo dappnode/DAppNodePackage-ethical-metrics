@@ -49,7 +49,6 @@ export function startApi({
         // Get the healthcheck status of the package
         try {
             const healthCheckUrl = pkgsHealthUrlMap[pkg as PeerPkgs];
-            logger.debug(`Checking health for package ${pkg} (${healthCheckUrl})`);
             const response = await axios.get(healthCheckUrl);
             res.status(response.status).json({ message: "OK" });
         } catch (e) {
