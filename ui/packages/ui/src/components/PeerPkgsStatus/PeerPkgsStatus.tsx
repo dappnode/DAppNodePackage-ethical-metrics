@@ -71,40 +71,65 @@ export default function PeerPkgsStatus(): JSX.Element {
               alignItems: "center",
             }}
           >
-            <Card sx={{ borderRadius: 2, position: "relative" }}>
-              <Tooltip
-                title={
-                  isDmsHealthy
-                    ? "DMS is online"
-                    : "DMS is not reachable. Make sure it is installed and running"
-                }
-              >
-                <Badge
-                  sx={{
-                    position: "absolute",
-                    top: 4,
-                    right: 4,
-                    backgroundColor: isDmsHealthy ? "green" : "red",
-                    color: "white",
-                    fontWeight: "bold",
-                    borderRadius: "50%",
-                    padding: "8px",
-                    fontSize: 12,
-                  }}
-                ></Badge>
-              </Tooltip>
-              <Box
-                component="img"
+            <Tooltip
+              title={isDmsHealthy ? "View DMS dashboards" : "Install DMS"}
+            >
+              <Card
                 sx={{
-                  height: 80,
-                  width: 80,
-                  padding: 2,
-                  mb: -1,
+                  borderRadius: 2,
+                  position: "relative",
+                  cursor: "pointer",
+                  transition: "0.3s",
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                    boxShadow: "5px 5px 15px rgba(0,0,0,0.3)",
+                  },
                 }}
-                alt="dms"
-                src={images.get(PeerPkgs.DMS)}
-              />
-            </Card>
+                onClick={() => {
+                  if (isDmsHealthy) {
+                    window.open("http://dms.dappnode/dashboards", "_blank");
+                  } else {
+                    window.open(
+                      "http://my.dappnode/installer/dnp/dms.dnp.dappnode.eth",
+                      "_blank"
+                    );
+                  }
+                }}
+              >
+                <Tooltip
+                  title={
+                    isDmsHealthy
+                      ? "DMS is online"
+                      : "DMS is not reachable. Make sure it is installed and running"
+                  }
+                >
+                  <Badge
+                    sx={{
+                      position: "absolute",
+                      top: 4,
+                      right: 4,
+                      backgroundColor: isDmsHealthy ? "green" : "red",
+                      color: "white",
+                      fontWeight: "bold",
+                      borderRadius: "50%",
+                      padding: "8px",
+                      fontSize: 12,
+                    }}
+                  ></Badge>
+                </Tooltip>
+                <Box
+                  component="img"
+                  sx={{
+                    height: 80,
+                    width: 80,
+                    padding: 2,
+                    mb: -1,
+                  }}
+                  alt="dms"
+                  src={images.get(PeerPkgs.DMS)}
+                />
+              </Card>
+            </Tooltip>
             <Typography sx={{ fontWeight: "bold", mt: 2 }}>
               {PeerPkgs.DMS}
             </Typography>
@@ -117,40 +142,71 @@ export default function PeerPkgsStatus(): JSX.Element {
               alignItems: "center",
             }}
           >
-            <Card sx={{ borderRadius: 2, position: "relative" }}>
-              <Tooltip
-                title={
-                  isDmsHealthy
-                    ? "Exporter is online"
-                    : "Exporter is not reachable. Make sure it is installed and running"
-                }
-              >
-                <Badge
-                  sx={{
-                    position: "absolute",
-                    top: 4,
-                    right: 4,
-                    backgroundColor: isExporterHealthy ? "green" : "red",
-                    color: "white",
-                    fontWeight: "bold",
-                    borderRadius: "50%",
-                    padding: "8px",
-                    fontSize: 12,
-                  }}
-                ></Badge>
-              </Tooltip>
-              <Box
-                component="img"
+            <Tooltip
+              title={
+                isExporterHealthy ? "View Exporter Info" : "Install Exporter"
+              }
+            >
+              <Card
                 sx={{
-                  height: 80,
-                  width: 80,
-                  padding: 2,
-                  mb: -1,
+                  borderRadius: 2,
+                  position: "relative",
+                  cursor: "pointer",
+                  transition: "0.3s",
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                    boxShadow: "5px 5px 15px rgba(0,0,0,0.3)",
+                  },
                 }}
-                alt="exporter"
-                src={images.get(PeerPkgs.EXPORTER)}
-              />
-            </Card>
+                onClick={() => {
+                  if (isExporterHealthy) {
+                    window.open(
+                      "http://my.dappnode/packages/my/dappnode-exporter.dnp.dappnode.eth/info",
+                      "_blank"
+                    );
+                  } else {
+                    window.open(
+                      "http://my.dappnode/installer/dnp/dappnode-exporter.dnp.dappnode.eth",
+                      "_blank"
+                    );
+                  }
+                }}
+              >
+                {" "}
+                <Tooltip
+                  title={
+                    isDmsHealthy
+                      ? "Exporter is online"
+                      : "Exporter is not reachable. Make sure it is installed and running"
+                  }
+                >
+                  <Badge
+                    sx={{
+                      position: "absolute",
+                      top: 4,
+                      right: 4,
+                      backgroundColor: isExporterHealthy ? "green" : "red",
+                      color: "white",
+                      fontWeight: "bold",
+                      borderRadius: "50%",
+                      padding: "8px",
+                      fontSize: 12,
+                    }}
+                  ></Badge>
+                </Tooltip>
+                <Box
+                  component="img"
+                  sx={{
+                    height: 80,
+                    width: 80,
+                    padding: 2,
+                    mb: -1,
+                  }}
+                  alt="exporter"
+                  src={images.get(PeerPkgs.EXPORTER)}
+                />
+              </Card>
+            </Tooltip>
             <Typography sx={{ fontWeight: "bold", mt: 2 }}>
               {PeerPkgs.EXPORTER}
             </Typography>
