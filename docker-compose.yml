@@ -15,9 +15,9 @@ services:
     volumes:
       - "tor-hidden-service:/var/lib/tor/"
     image: "tor-hidden-service.ethical-metrics.dnp.dappnode.eth:0.1.1"
-  ui:
+  api-ui:
     build:
-      context: ./ui
+      context: ./api-ui
     restart: always
     environment:
       EMAIL: null
