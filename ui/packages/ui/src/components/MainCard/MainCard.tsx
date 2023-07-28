@@ -19,7 +19,7 @@ export default function MainCard(): JSX.Element {
       const instanceResponse = await getInstance();
       setInstance(instanceResponse.instance);
     } catch (err) {
-      setFetchError(err.message);
+      setFetchError(`Error fetching dappnode ID: ${err.message}`);
     }
   }
 
@@ -28,7 +28,7 @@ export default function MainCard(): JSX.Element {
       const registerResponse = await registerInstance();
       setSuccessMessage(registerResponse.message);
     } catch (err) {
-      setFetchError(err.message);
+      setFetchError(`Error registering: ${err.message}`);
     }
   }
 
@@ -37,7 +37,7 @@ export default function MainCard(): JSX.Element {
       const registerResponse = await unregisterInstance();
       setSuccessMessage(registerResponse.message);
     } catch (err) {
-      setFetchError(err.message);
+      setFetchError(`Error unregistering: ${err.message}`);
     }
   }
 

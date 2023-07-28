@@ -4,7 +4,7 @@ import { PeerPkgs } from "@ethical-metrics/common";
 export async function isPackageHealthy(pkg: PeerPkgs) {
     try {
         console.log(`Checking health of package ${pkg}`);
-        const healthResponse = await fetch(`http://localhost:80/api/package-healthcheck?package=${pkg}`);
+        const healthResponse = await fetch(`/api/package-healthcheck?package=${pkg}`);
         return healthResponse.status === 200;
     } catch (e) {
         return false;
