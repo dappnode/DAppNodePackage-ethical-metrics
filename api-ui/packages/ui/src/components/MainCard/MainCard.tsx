@@ -1,4 +1,11 @@
-import { Box, Card, Alert, TextField, Button } from "@mui/material";
+import {
+  Box,
+  Card,
+  Alert,
+  TextField,
+  Button,
+  CircularProgress,
+} from "@mui/material";
 import React from "react";
 import { getInstance } from "../../calls/getInstance";
 import { registerInstance } from "../../calls/registerInstance";
@@ -12,6 +19,7 @@ export default function MainCard(): JSX.Element {
   const [successMessage, setSuccessMessage] = React.useState<
     string | undefined
   >(undefined);
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   // Get instance ID from API (/api/instance)
   async function getInstanceId(): Promise<void> {
@@ -25,7 +33,9 @@ export default function MainCard(): JSX.Element {
 
   async function triggerRegister(): Promise<void> {
     try {
+      setLoading(true);
       const registerResponse = await registerInstance();
+      setLoading(false);
       setSuccessMessage(registerResponse.message);
     } catch (err) {
       setFetchError(`Error registering: ${err.message}`);
@@ -34,7 +44,9 @@ export default function MainCard(): JSX.Element {
 
   async function triggerUnregister(): Promise<void> {
     try {
+      setLoading(true);
       const registerResponse = await unregisterInstance();
+      setLoading(false);
       setSuccessMessage(registerResponse.message);
     } catch (err) {
       setFetchError(`Error unregistering: ${err.message}`);
@@ -82,22 +94,28 @@ export default function MainCard(): JSX.Element {
               marginTop: 2,
             }}
           >
-            <Button
-              variant="contained"
-              color="primary"
-              sx={{ marginRight: 1 }}
-              onClick={() => triggerRegister()}
-            >
-              Register
-            </Button>
-            <Button
-              variant="contained"
-              color="error"
-              sx={{ marginLeft: 1 }}
-              onClick={() => triggerUnregister()}
-            >
-              Unregister
-            </Button>
+            {loading ? (
+              <CircularProgress />
+            ) : (
+              <>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{ marginRight: 1 }}
+                  onClick={() => triggerRegister()}
+                >
+                  Register
+                </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  sx={{ marginLeft: 1 }}
+                  onClick={() => triggerUnregister()}
+                >
+                  Unregister
+                </Button>
+              </>
+            )}
           </Box>
 
           {successMessage && (
