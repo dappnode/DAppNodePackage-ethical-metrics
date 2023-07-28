@@ -10,7 +10,8 @@
   "architectures": ["linux/amd64"],
   "categories": ["Monitoring"],
   "links": {
-    "homepage": "https://dappnode.com/"
+    "homepage": "https://dappnode.com/",
+    "ui": "http://ui.ethical-metrics.dappnode"
   },
   "license": "GPL-3.0",
   "dependencies": {
