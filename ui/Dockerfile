@@ -33,7 +33,6 @@ COPY --from=build /app/packages/server/dist ./packages/server/dist
 # Copy common dependencies and build
 COPY --from=build /app/packages/common/package.json ./packages/common/
 COPY --from=build /app/packages/common/dist ./packages/common/dist
-COPY --from=build /app/packages/common/node_modules ./packages/common/node_modules
 
 # Copy UI build
 COPY --from=build /app/packages/ui/build ./uiBuild
