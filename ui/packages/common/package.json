@@ -1,0 +1,13 @@
+{
+  "name": "@ethical-metrics/common",
+  "type": "module",
+  "version": "0.1.0",
+  "license": "GPL-3.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
+}

@@ -3,7 +3,10 @@ import path from 'path';
 import cors from 'cors';
 import http from 'node:http';
 import { makeHttpRequestViaTor } from './makeHttpRequestViaTor.js';
-import { uiBuildPath } from '../../params.js';
+import { pkgsHealthUrlMap, uiBuildPath } from '../../params.js';
+import { PeerPkgs } from "@ethical-metrics/common";
+import logger from '../logger/index.js';
+import axios from 'axios';
 
 export function startApi({
     torInstance,
@@ -28,6 +31,30 @@ export function startApi({
             res.json({ instance: torInstance });
         } catch (error) {
             res.status(500).json({ error: (error as Error).message });
+        }
+    });
+
+    app.get('/api/package-healthcheck', async (req, res) => {
+
+        const pkg = req.query.package;
+
+        logger.debug(`Healthcheck requested for package ${pkg}`);
+
+        // If pkgStr is not PeerPkgs, return 400
+        if (!Object.values(PeerPkgs).includes(pkg as PeerPkgs)) {
+            res.status(400).json({ message: "Invalid package name" });
+            return;
+        }
+
+        // Get the healthcheck status of the package
+        try {
+            const healthCheckUrl = pkgsHealthUrlMap[pkg as PeerPkgs];
+            logger.debug(`Checking health for package ${pkg} (${healthCheckUrl})`);
+            const response = await axios.get(healthCheckUrl);
+            res.status(response.status).json({ message: "OK" });
+        } catch (e) {
+            logger.error(`Error checking health for package ${pkg}`, e as Error);
+            res.status(500).send();
         }
     });
 

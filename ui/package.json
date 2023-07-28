@@ -1,5 +1,5 @@
 {
-  "name": "ethical-metrics-server",
+  "name": "ethical-metrics",
   "type": "module",
   "private": true,
   "workspaces": [
