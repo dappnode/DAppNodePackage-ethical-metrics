@@ -58,7 +58,7 @@ export function startApi({
     });
 
     // Endpoint to handle registration
-    app.post('/api/register', async (_req, res) => {
+    app.get('/api/register', async (_req, res) => {
         try {
             const postBody = {
                 instance: torInstance,
@@ -75,7 +75,7 @@ export function startApi({
     });
 
     // Endpoint to handle unregistration
-    app.post('/api/unregister', async (req, res) => {
+    app.get('/api/unregister', async (req, res) => {
         try {
             const deleteBody = [
                 {
