@@ -1,5 +1,5 @@
 {
-  "name": "ethical-metrics-server",
+  "name": "ethical-metrics",
   "type": "module",
   "private": true,
   "workspaces": [
@@ -10,7 +10,10 @@
   "author": "DappNode Association",
   "license": "MIT",
   "scripts": {
-    "build": "npm run build --workspaces",
+    "build": "npm run build:common && npm run build:server && npm run build:ui",
+    "build:common": "npm --prefix packages/common run build",
+    "build:server": "npm --prefix packages/server run build",
+    "build:ui": "npm --prefix packages/ui run build",
     "lint": "eslint . --ext .jsx,.ts,.tsx",
     "link:ui": "cd packages/server && npm run link:ui"
   },

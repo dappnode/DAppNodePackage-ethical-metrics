@@ -1,4 +1,10 @@
 import path from "path";
+import { PeerPkgs } from "@ethical-metrics/common"
+
+export const pkgsHealthUrlMap: { [key in PeerPkgs]: string } = {
+    [PeerPkgs.DMS]: 'http://prometheus.dms.dappnode:9090/-/healthy',
+    [PeerPkgs.EXPORTER]: 'http://cadvisor.dappnode-exporter.dappnode:8080/healthz',
+};
 
 export const torInstanceFilePath = "/var/lib/tor/hidden_service/hostname";
 
