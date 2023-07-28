@@ -4,9 +4,7 @@ export interface RegisterInstanceResponse {
 
 export async function registerInstance(): Promise<RegisterInstanceResponse> {
     try {
-        const registerResponse = await fetch("api/register", {
-            method: 'POST',
-        });
+        const registerResponse = await fetch("/api/register");
 
         if (!registerResponse.ok) {
             throw new Error(registerResponse.statusText);

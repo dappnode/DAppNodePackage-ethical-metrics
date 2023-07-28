@@ -58,7 +58,7 @@ export function startApi({
     });
 
     // Endpoint to handle registration
-    app.post('/api/register', async (_req, res) => {
+    app.get('/api/register', async (_req, res) => {
         try {
             const postBody = {
                 instance: torInstance,
@@ -75,7 +75,7 @@ export function startApi({
     });
 
     // Endpoint to handle unregistration
-    app.post('/api/unregister', async (req, res) => {
+    app.get('/api/unregister', async (req, res) => {
         try {
             const deleteBody = [
                 {
@@ -95,9 +95,14 @@ export function startApi({
     // Serve static files from the "public" directory
     app.use(express.static(uiBuildPath));
 
-    app.get("*", (req, res) => {
-        res.sendFile(path.join(uiBuildPath, "index.html"));
+    app.use((req, res, next) => {
+        if (!req.path.startsWith('/api')) {
+            res.sendFile(path.join(uiBuildPath, "index.html"));
+        } else {
+            next();
+        }
     });
+
 
     // Start the server
     app.listen(port, () => {

@@ -4,9 +4,7 @@ export interface UnregisterInstanceResponse {
 
 export async function unregisterInstance(): Promise<UnregisterInstanceResponse> {
     try {
-        const registerResponse = await fetch("/api/unregister", {
-            method: 'POST',
-        });
+        const registerResponse = await fetch("/api/unregister");
 
         if (!registerResponse.ok) {
             throw new Error(registerResponse.statusText);
