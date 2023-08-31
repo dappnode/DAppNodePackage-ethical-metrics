@@ -8,4 +8,6 @@ COPY torrc /etc/tor/torrc
 
 EXPOSE 9050
 
+USER tor
+
 ENTRYPOINT ["/usr/bin/tor"]
