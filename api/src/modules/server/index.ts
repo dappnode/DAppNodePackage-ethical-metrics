@@ -44,6 +44,17 @@ export function startApi({
     }
   });
 
+  app.get("/instance", async (_req, res) => {
+    try {
+      res.json({ instance: torInstance }).status(200).send();
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: (error as Error).message })
+        .send();
+    }
+  });
+
   app.post("/targetByInstance", async (_req, res) => {
     try {
       logger.info(`Getting target by instance ${torInstance} from server`);
