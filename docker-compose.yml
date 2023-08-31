@@ -16,7 +16,7 @@ services:
     build:
       context: ./api
     restart: always
-    image: "ui.ethical-metrics.dnp.dappnode.eth:0.1.1"
+    image: "api.ethical-metrics.dnp.dappnode.eth:0.1.1"
     depends_on:
       - tor-hidden-service
     volumes:
