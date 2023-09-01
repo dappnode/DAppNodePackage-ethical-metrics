@@ -22,6 +22,12 @@ export function startApi({
   app.use(express.json());
   app.use(cors());
 
+  /**
+   * Fetch and return the status of the packages
+   * invoolved in the ethical metrics.
+   *
+   * This is an endpoint exclusively from this service
+   */
   app.get("/package-healthcheck", async (req, res) => {
     const pkg = req.query.package;
 
@@ -44,6 +50,11 @@ export function startApi({
     }
   });
 
+  /**
+   * Fetch and return the current instance
+   *
+   * This is an endpoint exclusively from this service
+   */
   app.get("/instance", async (_req, res) => {
     try {
       res.json({ instance: torInstance }).status(200).send();
@@ -55,6 +66,11 @@ export function startApi({
     }
   });
 
+  /**
+   * Fetch and return the target by instance.
+   *
+   * This is an endpoint bypassed to the proxy server
+   */
   app.post("/targetByInstance", async (_req, res) => {
     try {
       logger.info(`Getting target by instance ${torInstance} from server`);
@@ -78,7 +94,11 @@ export function startApi({
     }
   });
 
-  // Endpoint to handle registration
+  /**
+   * Register a new target. If the target already exists, it will be updated with the new email.
+   *
+   * This is an endpoint bypassed to the proxy server
+   */
   app.post("/targets", async (req, res) => {
     try {
       const email = req.body.email;
@@ -105,7 +125,11 @@ export function startApi({
     }
   });
 
-  // Endpoint to handle unregistration
+  /**
+   * Unregister a target.
+   *
+   * This is an endpoint bypassed to the proxy server
+   */
   app.delete("/targets", async (req, res) => {
     try {
       logger.info(`Unregistering instance ${torInstance} from server`);
