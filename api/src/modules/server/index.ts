@@ -71,7 +71,7 @@ export function startApi({
    *
    * This is an endpoint bypassed to the proxy server
    */
-  app.post("/targetByInstance", async (_req, res) => {
+  app.post("/target-by-instance", async (_req, res) => {
     try {
       logger.info(`Getting target by instance ${torInstance} from server`);
 
@@ -81,7 +81,7 @@ export function startApi({
 
       const message = await makeHttpRequestViaTor(
         "POST",
-        url.resolve(registerUrl, "targetByInstance"),
+        url.resolve(registerUrl, "target-by-instance"),
         postBody
       );
 
