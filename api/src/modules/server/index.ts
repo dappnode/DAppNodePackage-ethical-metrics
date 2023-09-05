@@ -107,8 +107,8 @@ export function startApi({
       );
 
       const postBody = {
-        Instance: torInstance,
-        Email: email,
+        instance: torInstance,
+        mail: email,
       };
       const message = await makeHttpRequestViaTor(
         "POST",
