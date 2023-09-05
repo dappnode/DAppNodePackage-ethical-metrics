@@ -16,9 +16,9 @@ services:
     build:
       context: ./api
     restart: always
-    image: "api.ethical-metrics.dnp.dappnode.eth:0.1.1"
+    image: "api-ui.ethical-metrics.dnp.dappnode.eth:0.1.1"
     environment:
-      - EMAIL: null
+      - EMAIL
     depends_on:
       - tor-hidden-service
     volumes:
