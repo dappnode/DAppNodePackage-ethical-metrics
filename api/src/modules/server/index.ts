@@ -101,14 +101,14 @@ export function startApi({
    */
   app.post("/targets", async (req, res) => {
     try {
-      const email = req.body.email;
+      const mail = req.body.mail;
       logger.info(
-        `Registering instance ${torInstance} with email ${email} in server`
+        `Registering instance ${torInstance} with email ${mail} in server`
       );
 
       const postBody = {
         instance: torInstance,
-        mail: email,
+        mail: mail,
       };
       const message = await makeHttpRequestViaTor(
         "POST",
