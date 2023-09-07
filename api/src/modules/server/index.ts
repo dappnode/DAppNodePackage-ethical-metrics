@@ -76,7 +76,7 @@ export function startApi({
       logger.info(`Getting target by instance ${torInstance} from server`);
 
       const postBody = {
-        Instance: torInstance,
+        instance: torInstance,
       };
 
       const message = await makeHttpRequestViaTor(
