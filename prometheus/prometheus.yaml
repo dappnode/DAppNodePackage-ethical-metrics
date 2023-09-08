@@ -14,7 +14,8 @@ scrape_configs:
       'match[]':
         - '{__name__=~"dappmanager.*"}'
         - '{__name__=~"node_cpu_seconds_total|container_memory_usage_bytes|container_memory_cache|node_memory_MemTotal_bytes|node_memory_MemFree_bytes|node_memory_Buffers_bytes|node_memory_Cached_bytes|node_disk_io_time_seconds_total|node_disk_reads_completed_total|node_disk_writes_completed_total|container_fs_usage_bytes|node_filesystem_size_bytes|node_filesystem_free_bytes|container_last_seen|cadvisor_version_info|container_cpu_usage_seconds_total|node_hwmon_temp_celsius"}'
-  
+        - '{__name__=~"eth2_slashingprotection_prevented_signings|signing_signers_loaded_count|signing_bls_signing_duration|signing_bls_signing_duration_count|signing_bls_signing_duration_sum|signing_bls_missing_identifier_count"}'
+        - '{__name__=~"api_rpc.*"}'
     static_configs:
       - targets:
           - "prometheus.dms.dappnode:9090"

@@ -4,16 +4,24 @@ services:
     build:
       context: ./prometheus
       args:
-        UPSTREAM_VERSION: v2.45.0
-    image: "prometheus.ethical-metrics.dnp.dappnode.eth:0.1.0"
+        UPSTREAM_VERSION: v2.47.0
+    image: "prometheus.ethical-metrics.dnp.dappnode.eth:0.1.1"
   tor-hidden-service:
     build:
       context: ./tor-hidden-service
-    environment:
-      EMAIL: null
-      REGISTER_URL: "https://ethical-metrics.dappnode.io/targets"
     volumes:
       - "tor-hidden-service:/var/lib/tor/"
-    image: "tor-hidden-service.ethical-metrics.dnp.dappnode.eth:0.1.0"
+    image: "tor-hidden-service.ethical-metrics.dnp.dappnode.eth:0.1.1"
+  api-ui:
+    build:
+      context: ./api
+    restart: always
+    image: "api-ui.ethical-metrics.dnp.dappnode.eth:0.1.1"
+    environment:
+      - EMAIL
+    depends_on:
+      - tor-hidden-service
+    volumes:
+      - "tor-hidden-service:/var/lib/tor:ro"
 volumes:
   tor-hidden-service: {}
