@@ -133,11 +133,10 @@ export function startApi({
   app.delete("/targets", async (req, res) => {
     try {
       logger.info(`Unregistering instance ${torInstance} from server`);
-      const deleteBody = [
-        {
-          instance: torInstance,
-        },
-      ];
+      const deleteBody = {
+        instance: torInstance,
+      };
+
       const message = await makeHttpRequestViaTor(
         "DELETE",
         url.resolve(registerUrl, "targets"),
