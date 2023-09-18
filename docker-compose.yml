@@ -10,7 +10,7 @@ services:
     build:
       context: ./tor-hidden-service
     environment:
-      - EMAIL:
+      - EMAIL
     volumes:
       - "tor-hidden-service:/var/lib/tor/"
     image: "tor-hidden-service.ethical-metrics.dnp.dappnode.eth:0.1.1"
