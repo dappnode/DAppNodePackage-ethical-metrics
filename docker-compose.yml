@@ -9,6 +9,8 @@ services:
   tor-hidden-service:
     build:
       context: ./tor-hidden-service
+    environment:
+      - EMAIL
     volumes:
       - "tor-hidden-service:/var/lib/tor/"
     image: "tor-hidden-service.ethical-metrics.dnp.dappnode.eth:0.1.1"
@@ -17,8 +19,6 @@ services:
       context: ./api
     restart: always
     image: "api-ui.ethical-metrics.dnp.dappnode.eth:0.1.1"
-    environment:
-      - EMAIL
     depends_on:
       - tor-hidden-service
     volumes:
