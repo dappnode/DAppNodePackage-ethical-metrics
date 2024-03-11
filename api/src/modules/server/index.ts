@@ -101,15 +101,23 @@ export function startApi({
    */
   app.post("/targets", async (req, res) => {
     try {
-      const mail = req.body.mail;
+      const { mail, tgChannelId } = req.body;
+
       logger.info(
-        `Registering instance ${torInstance} with email ${mail} in server`
+        `Registering instance ${torInstance} with email ${mail} and telegram channel id ${tgChannelId} in server`
       );
 
-      const postBody = {
+      const postBody: {
+        instance: string;
+        mail?: string;
+        tgChannelId?: string;
+      } = {
         instance: torInstance,
-        mail: mail,
       };
+
+      if (mail) postBody.mail = mail;
+      if (tgChannelId) postBody.tgChannelId = tgChannelId;
+
       const message = await makeHttpRequestViaTor(
         "POST",
         url.resolve(registerUrl, "targets"),
