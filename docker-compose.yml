@@ -4,7 +4,7 @@ services:
     build:
       context: ./prometheus
       args:
-        UPSTREAM_VERSION: v2.47.0
+        UPSTREAM_VERSION: v2.51.0+dedupelabels
     image: "prometheus.ethical-metrics.dnp.dappnode.eth:0.1.1"
   tor-hidden-service:
     build:
