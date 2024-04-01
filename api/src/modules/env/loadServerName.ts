@@ -8,8 +8,13 @@ import {
 import logger from "../logger/index.js";
 
 export async function loadServerName(): Promise<string> {
+  const regexServerName = /^[a-zA-Z0-9]([a-zA-Z0-9\-_]{0,253}[a-zA-Z0-9])?$/;
   let serverName: string;
-  if (process.env.SERVER_NAME) {
+
+  if (
+    process.env.SERVER_NAME &&
+    regexServerName.test(process.env.SERVER_NAME)
+  ) {
     serverName = process.env.SERVER_NAME;
   } else {
     serverName = uniqueNamesGenerator({
