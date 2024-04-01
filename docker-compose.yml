@@ -16,7 +16,7 @@ services:
     image: "tor-hidden-service.ethical-metrics.dnp.dappnode.eth:0.1.1"
   api-ui:
     environment:
-      - SERVER_NAME
+      - SERVER_NAME # It can contain only alphanumeric characters, hyphens, and underscores: ^[a-zA-Z0-9]([a-zA-Z0-9\-_]{0,253}[a-zA-Z0-9])?$
     build:
       context: ./api
     restart: always
