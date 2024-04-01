@@ -26,10 +26,7 @@ export async function loadTorInstance(): Promise<string> {
   }
   // post to the dappmanager the tor instance "http://my.dappnode/data-send?key=torInstance&data=${torInstance}" POST
   await axios
-    .post("http://my.dappnode/data-send", {
-      key: "torInstance",
-      data: torInstance,
-    })
+    .post(`http://my.dappnode/data-send?key=torInstance&data=${torInstance}`)
     .catch((error) =>
       logger.error(`Error sending tor instance to the dappmanager: ${error}`)
     );
