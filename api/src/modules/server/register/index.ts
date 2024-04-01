@@ -165,7 +165,7 @@ export function startRegisterApi({
 
   // Start the server
   app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    logger.info(`Register API is running on port ${port}`);
   });
 
   return server;

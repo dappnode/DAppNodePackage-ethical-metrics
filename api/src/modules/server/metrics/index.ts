@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import http from "node:http";
 import client from "prom-client";
+import logger from "../../logger/index.js";
 
 export function startMetricsApi({
   serverName,
@@ -31,7 +32,7 @@ export function startMetricsApi({
   });
 
   server.listen(port, () => {
-    console.log(`Metrics server listening on port ${port}`);
+    logger.info(`Metrics server listening on port ${port}`);
   });
 
   return server;
