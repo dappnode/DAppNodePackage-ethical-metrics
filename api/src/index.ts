@@ -1,5 +1,5 @@
 import logger from "./modules/logger/index.js";
-import { startApi } from "./modules/server/index.js";
+import { startRegisterApi } from "./modules/server/register/index.js";
 import axios from "axios";
 import { loadServerName, loadTorInstance } from "./modules/env/index.js";
 
@@ -22,7 +22,7 @@ await axios.post("http://my.dappnode/data-send", {
 
 // Start server API
 logger.info(`Starting Ethical Metrics API...`);
-const server = startApi({
+const registerServer = startRegisterApi({
   torInstance,
   registerUrl,
   serverName,
@@ -31,7 +31,7 @@ const server = startApi({
 // Graceful shutdown
 function handle(signal: string): void {
   logger.info(`${signal} received. Shutting down...`);
-  server.close();
+  registerServer.close();
   process.exit(0);
 }
 

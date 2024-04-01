@@ -1,0 +1,8 @@
+[
+  {
+    "labels": {
+      "job": "api-ui"
+    },
+    "targets": ["api-ui.ethical-metrics.dappnode:9090"]
+  }
+]
