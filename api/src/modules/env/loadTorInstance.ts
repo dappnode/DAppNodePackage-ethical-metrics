@@ -1,5 +1,6 @@
 import { existsSync, statSync, readFileSync } from "fs";
 import logger from "../logger/index.js";
+import axios from "axios";
 
 const torInstanceFilePath = "/var/lib/tor/hidden_service/hostname";
 const maxRetryInterval = 5 * 60 * 1000; // 5 minutes in milliseconds
@@ -23,6 +24,14 @@ export async function loadTorInstance(): Promise<string> {
     elapsedTime += 5000;
     await new Promise((resolve) => setTimeout(resolve, 5000));
   }
-  logger.info(`Loaded TOR instance: ${torInstance}`);
+  // post to the dappmanager the tor instance "http://my.dappnode/data-send?key=torInstance&data=${torInstance}" POST
+  await axios
+    .post("http://my.dappnode/data-send", {
+      key: "torInstance",
+      data: torInstance,
+    })
+    .catch((error) =>
+      logger.error(`Error sending tor instance to the dappmanager: ${error}`)
+    );
   return torInstance;
 }

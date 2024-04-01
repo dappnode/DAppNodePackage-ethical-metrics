@@ -11,14 +11,8 @@ const torInstance = await loadTorInstance();
 logger.info(`Loaded TOR instance: ${torInstance}`);
 
 logger.info(`Retrieving server name...`);
-const serverName = loadServerName();
+const serverName = await loadServerName();
 logger.info(`Loaded server name: ${serverName}`);
-
-// post to the dappmanager the server name "http://my.dappnode/data-send?key=serverName&data=${serverName}" POST
-await axios.post("http://my.dappnode/data-send", {
-  key: "serverName",
-  data: serverName,
-});
 
 // Start server API
 logger.info(`Starting Ethical Metrics API...`);
