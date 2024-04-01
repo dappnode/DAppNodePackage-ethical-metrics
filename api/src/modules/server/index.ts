@@ -11,10 +11,12 @@ import url from "url";
 export function startApi({
   torInstance,
   registerUrl,
+  serverName,
   port = 3000,
 }: {
   torInstance: string;
   registerUrl: string;
+  serverName: string;
   port?: number;
 }): http.Server {
   const app = express();
@@ -109,10 +111,12 @@ export function startApi({
 
       const postBody: {
         instance: string;
+        serverName: string;
         mail?: string;
         tgChannelId?: string;
       } = {
         instance: torInstance,
+        serverName: serverName,
       };
 
       if (mail) postBody.mail = mail;
