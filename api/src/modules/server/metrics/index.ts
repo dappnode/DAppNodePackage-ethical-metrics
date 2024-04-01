@@ -23,10 +23,9 @@ export function startMetricsApi({
     help: "Information about the Tor instance",
     labelNames: ["serverName", "torInstance"],
   });
-  torInstanceInfo.set({ serverName, torInstance }, 1);
-  register.registerMetric(torInstanceInfo);
 
   app.get("/metrics", async (_req, res) => {
+    torInstanceInfo.set({ serverName, torInstance }, 1);
     res.set("Content-Type", register.contentType);
     res.end(await client.register.metrics());
   });
