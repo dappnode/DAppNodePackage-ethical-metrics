@@ -1,7 +1,7 @@
 import { SocksProxyAgent } from "socks-proxy-agent";
 import axios, { AxiosRequestConfig } from "axios";
-import { torProxyUrl } from "../../params.js";
-import logger from "../logger/index.js";
+import { torProxyUrl } from "../../../params.js";
+import logger from "../../logger/index.js";
 
 // Helper function to make HTTP requests through Tor
 export async function makeHttpRequestViaTor(
