@@ -7,7 +7,7 @@ import {
 } from "unique-names-generator";
 import logger from "../logger/index.js";
 
-export async function loadServerName(): Promise<string> {
+export async function loadServerName(torInstance: string): Promise<string> {
   const regexServerName = /^[a-zA-Z0-9]([a-zA-Z0-9\-_]{0,30})?[a-zA-Z0-9]$/;
   let serverName: string;
 
@@ -21,7 +21,7 @@ export async function loadServerName(): Promise<string> {
       dictionaries: [adjectives, colors, animals],
       separator: "-",
       style: "capital",
-      seed: "torInstance",
+      seed: torInstance,
     });
   }
   // post to the dappmanager the server name "http://my.dappnode/data-send?key=serverName&data=${serverName}" POST

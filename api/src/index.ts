@@ -12,7 +12,7 @@ const torInstance = await loadTorInstance();
 logger.info(`Loaded TOR instance: ${torInstance}`);
 
 logger.info(`Retrieving server name...`);
-const serverName = await loadServerName();
+const serverName = await loadServerName(torInstance);
 logger.info(`Loaded server name: ${serverName}`);
 
 // Start server API
