@@ -8,7 +8,7 @@ import {
 import logger from "../logger/index.js";
 
 export async function loadServerName(torInstance: string): Promise<string> {
-  const regexServerName = /^[a-zA-Z0-9]([a-zA-Z0-9\-_]{0,30})?[a-zA-Z0-9]$/;
+  const regexServerName = /^[a-zA-Z0-9]([a-zA-Z0-9\-_]{0,62})?[a-zA-Z0-9]$/;
   let serverName: string;
 
   if (
